@@ -28,15 +28,25 @@ body,
 input,
 button,
 textarea {
-  font: 400 16px "Poppins", sans-serif;
+  font: 400 16px 'Poppins', sans-serif;
 }
 
 body {
-  background: url("../assets/images/background.jpg") no-repeat;
+  background: #333;
   color: #f1f1f1;
 
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+  transition: filter 0.3s;
+}
+
+a:hover {
+  filter: brightness(0.85);
 }
 
 button {
@@ -47,4 +57,11 @@ button {
 [disabled] {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.backgroudImg {
+  background: url('../assets/images/background.jpg') no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 }
