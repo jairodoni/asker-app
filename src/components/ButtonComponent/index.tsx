@@ -36,6 +36,7 @@ export function ButtonComponent({ background, children, path }: ButtonComponentP
 
 const ButtonStyled = styled(Button)({
   height: "2.95rem",
+  width: "100%",
   marginTop: "1.6rem",
   padding: '4px 12px',
   textTransform: 'none',

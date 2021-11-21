@@ -8,11 +8,11 @@ export function Start() {
       <Stack
         marginTop="-14px"
         direction="row"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="baseline"
         spacing={2}
       >
-        <ButtonComponent background="#45D003" path="/">
+        <ButtonComponent background="#45D003" path="/asks">
           Start
         </ButtonComponent>
         <ButtonComponent background="#CC0000" path="/">

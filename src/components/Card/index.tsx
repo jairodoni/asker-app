@@ -17,8 +17,8 @@ export function Card({ children }: CardProps) {
         elevation={3}
         sx={{
           maxWidth: "380px",
-          padding: 4,
-          borderRadius: 6,
+          width: "100%",
+          borderRadius: "24px",
           marginBottom: 2,
           boxShadow: "0 6px 16px rgba(0,0,0,0.7)"
         }}
