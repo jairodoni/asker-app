@@ -1,14 +1,15 @@
+import { ReactNode } from 'react';
 import { styled } from '@material-ui/system';
 import { useNavigate } from 'react-router';
 import Button from '@mui/material/Button';
 
 interface ButtonComponentProps {
   background: string;
-  name: string;
+  children: ReactNode;
   path: string;
 }
 
-export function ButtonComponent({ background, name, path }: ButtonComponentProps) {
+export function ButtonComponent({ background, children, path }: ButtonComponentProps) {
 
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ export function ButtonComponent({ background, name, path }: ButtonComponentProps
           boxShadow: 'none',
         }
       }}>
-      {name}
+      {children}
     </ButtonStyled>
   );
 }

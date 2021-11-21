@@ -16,7 +16,9 @@ export function Home() {
           Quantas perguntas você quer ver?
         </Typography>
         <Input placeholder="ex: 10" type="number" />
-        <ButtonComponent background="#45D003" name="Continuar" path="/start" />
+        <ButtonComponent background="#45D003" path="/start">
+          Continuar
+        </ButtonComponent>
       </Stack>
     </Card>
   );
