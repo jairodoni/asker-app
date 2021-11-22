@@ -1,27 +1,11 @@
-import { Stack, Typography } from "@material-ui/core";
-import { Box } from "@material-ui/system";
-import { ButtonComponent } from "../components/ButtonComponent";
-import { Card } from "../components/Card";
+import { Stack } from "@material-ui/core";
 import { QuestionWithAnswer } from "../components/QuestionWithAnswer";
+import { RecordCard } from "../components/RecordCard";
 
-import styles from "../styles/recordSession.module.css";
 
 export function RecordSession() {
   return (
-    <Card>
-      <Box className={styles.score}>
-        <div className={`${styles.score} ${styles.right}`}>
-          <Typography fontWeight={500}>
-            Acertou: 5
-          </Typography>
-        </div>
-        <div className={`${styles.score} ${styles.wrong}`}>
-          <Typography fontWeight={500}>
-            Errou: 5
-          </Typography>
-        </div>
-      </Box>
-
+    <RecordCard right={5} wrong={5}>
       <Stack
         direction="column"
         alignItems="center"
@@ -45,15 +29,6 @@ export function RecordSession() {
         <QuestionWithAnswer />
         <QuestionWithAnswer />
       </Stack>
-
-      <Box
-        paddingX={4}
-        paddingBottom={2}
-      >
-        <ButtonComponent background="#E79800" path="/">
-          Back to home
-        </ButtonComponent>
-      </Box>
-    </Card>
+    </RecordCard>
   );
 }
