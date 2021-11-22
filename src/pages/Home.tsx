@@ -7,7 +7,9 @@ export function Home() {
 
   return (
     <Card>
-      <Stack>
+      <Stack
+        p={4}
+      >
         <Typography
           sx={{
             marginBottom: 2,

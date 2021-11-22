@@ -5,6 +5,7 @@ import { Start } from './pages/Start';
 import { Asks } from './pages/Asks';
 import { PageNotFound } from './pages/PageNotFound';
 import { RecordSession } from './pages/RecordSession';
+import { Answer } from './pages/Answer';
 
 export default function RoutesList() {
   return (
@@ -14,6 +15,7 @@ export default function RoutesList() {
         <Route path="/start" element={<Start />} />
         <Route path="/asks" element={<Asks />} />
         <Route path="/record" element={<RecordSession />} />
+        <Route path="/answer" element={<Answer />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

@@ -6,6 +6,7 @@ export function PageNotFound() {
   return (
     <Card>
       <Stack
+        p={4}
         sx={{
           alignItems: "center"
         }}
@@ -17,14 +18,15 @@ export function PageNotFound() {
         <Link to="/">
           <a
             style={{
+              width: "100%",
               background: "#f1f1f1",
               color: "#333",
-              padding: "5px 16px",
+              padding: "5px 18px",
               borderRadius: "10px",
               fontWeight: "500"
             }}
           >
-            Voltar a primeira pagina
+            Back to home
           </a>
         </Link>
       </Stack>

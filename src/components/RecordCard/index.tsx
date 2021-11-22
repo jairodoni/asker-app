@@ -27,17 +27,7 @@ export function RecordCard({ children, right, wrong }: RecordCardProps) {
           </Typography>
         </div>
       </Box>
-
       {children}
-
-      <Box
-        paddingX={4}
-        paddingBottom={2}
-      >
-        <ButtonComponent background="#E79800" path="/">
-          Back to home
-        </ButtonComponent>
-      </Box>
     </Card>
   );
 }

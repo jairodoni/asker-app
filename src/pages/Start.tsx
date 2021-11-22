@@ -6,7 +6,8 @@ export function Start() {
   return (
     <Card>
       <Stack
-        marginTop="-14px"
+        p={4}
+        marginTop="-20px"
         direction="row"
         justifyContent="center"
         alignItems="baseline"

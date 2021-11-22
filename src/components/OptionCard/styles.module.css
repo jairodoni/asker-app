@@ -11,6 +11,9 @@
   background: #3f3f3f;
   color: #f1f1f1;
 
+  /* border: 2px solid; */
+
+  /* border-image: linear-gradient(227.91deg, #106af2 0%, #00e0ff 100%) 1; */
   transition: filter 0.2s;
 }
 
@@ -20,5 +23,16 @@
 
 .container:focus,
 .container:active {
-  border: 2px solid #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+
+.right {
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(227.91deg, #940000 0%, #e90000 100%);
+}
+.wrong {
+  padding: 2px;
+  border-radius: 8px;
+  background: linear-gradient(227.91deg, #2f9300 0%, #49e100 100%);
 }

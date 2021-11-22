@@ -5,15 +5,17 @@ import styles from './styles.module.css';
 
 export function OptionCard() {
   return (
-    <Box className={styles.container}>
-      <Typography
-        sx={{
-          fontSize: "0.95rem",
-          fontWeight: 400,
-        }}
-      >
-        Brasil, Estados Unidos, México e Índia
-      </Typography>
+    <Box>
+      <Box className={styles.container}>
+        <Typography
+          sx={{
+            fontSize: "0.95rem",
+            fontWeight: 400,
+          }}
+        >
+          Brasil, Estados Unidos, México e Índia
+        </Typography>
+      </Box>
     </Box>
   );
 }
