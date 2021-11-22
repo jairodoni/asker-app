@@ -43,7 +43,7 @@ export function Asks() {
         <OptionCard />
         <OptionCard />
         <br />
-        <ButtonComponent background="#E79800" path="/start">
+        <ButtonComponent background="#E79800" path="/record">
           Confirmar
         </ButtonComponent>
       </Stack>

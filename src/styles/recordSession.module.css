@@ -1,0 +1,17 @@
+.score {
+  height: 2.8rem;
+  display: flex;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right {
+  border-radius: 24px 0 0 0;
+  background: #45d003;
+}
+
+.wrong {
+  border-radius: 0 24px 0 0;
+  background: #cc0000;
+}
