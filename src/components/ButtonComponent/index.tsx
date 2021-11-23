@@ -5,8 +5,8 @@ import Button from '@mui/material/Button';
 
 interface ButtonComponentProps {
   background: string;
-  children: ReactNode;
   path: string;
+  children: ReactNode;
 }
 
 export function ButtonComponent({ background, children, path }: ButtonComponentProps) {

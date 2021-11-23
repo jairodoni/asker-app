@@ -4,7 +4,6 @@ import { Card } from "../components/Card";
 import { Input } from "../components/Input";
 
 export function Home() {
-
   return (
     <Card>
       <Stack
@@ -22,6 +21,6 @@ export function Home() {
           Continuar
         </ButtonComponent>
       </Stack>
-    </Card>
+    </Card >
   );
 }
