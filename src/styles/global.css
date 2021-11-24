@@ -54,6 +54,11 @@ button {
   border: unset;
 }
 
+input + span {
+  font-size: 0.9rem;
+  color: #e40000;
+}
+
 [disabled] {
   opacity: 0.6;
   cursor: not-allowed;

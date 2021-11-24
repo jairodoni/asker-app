@@ -1,10 +1,8 @@
 import { Typography } from "@material-ui/core";
 import { Box } from "@material-ui/system";
 import { ReactNode } from "react";
-import { ButtonComponent } from "../ButtonComponent";
 import { Card } from "../Card";
 import styles from './styles.module.css';
-
 
 interface RecordCardProps {
   right: number;

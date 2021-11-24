@@ -1,25 +1,21 @@
-import { styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
+import { Field } from 'formik';
+import styles from './styles.module.css';
 
 interface InputProps {
   placeholder: string;
   type: string;
+  name: string
 }
 
-export function Input({ placeholder, type }: InputProps) {
+export function InputComponent({ placeholder, type, name }: InputProps) {
   return (
-    <InputStyled placeholder={placeholder} type={type} />
+    <Field
+      id={name}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      className={styles.imput}
+    />
   );
 }
 
-const InputStyled = styled(InputBase)(({ theme }) => ({
-  '& .MuiInputBase-input': {
-    height: "1.8rem",
-    borderRadius: 10,
-    background: "#333",
-    border: "none",
-    fontSize: "1.1rem",
-    width: '100%',
-    padding: '10px 12px',
-  },
-}));

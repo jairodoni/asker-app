@@ -4,8 +4,6 @@ import { ButtonComponent } from "../components/ButtonComponent";
 import { Card } from "../components/Card";
 import { OptionCard } from "../components/OptionCard";
 
-import styles from "../styles/asks.module.css"
-
 export function Asks() {
   return (
     <Card>
@@ -19,7 +17,7 @@ export function Asks() {
         }}
       >
         <Typography>
-          Pergunta 1 de 10
+          Question 1 out of 10
         </Typography>
       </Box>
       <Stack
@@ -33,9 +31,9 @@ export function Asks() {
         }}
       >
         <Typography width="100%" >
-          Quais os quatros países que têm a
-          maior população carcerária do
-          mundo?
+          Which four countries have the
+          largest prison population in the
+          world?
         </Typography>
 
         <OptionCard />
@@ -44,7 +42,7 @@ export function Asks() {
         <OptionCard />
         <br />
         <ButtonComponent background="#E79800" path="/record">
-          Confirmar
+          Confirm
         </ButtonComponent>
       </Stack>
     </Card>

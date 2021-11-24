@@ -5,33 +5,9 @@ import Button from '@mui/material/Button';
 
 interface ButtonComponentProps {
   background: string;
-  path: string;
+  path?: string;
+  type?: "button" | "submit" | "reset" | undefined;
   children: ReactNode;
-}
-
-export function ButtonComponent({ background, children, path }: ButtonComponentProps) {
-
-  const navigate = useNavigate();
-
-  function handleGoTo() {
-    navigate(path)
-  }
-
-  return (
-    <ButtonStyled
-      variant="text"
-      onClick={handleGoTo}
-      sx={{
-        background: background,
-        "&:hover": {
-          background: background,
-          filter: "brightness(0.85)",
-          boxShadow: 'none',
-        }
-      }}>
-      {children}
-    </ButtonStyled>
-  );
 }
 
 const ButtonStyled = styled(Button)({
@@ -47,3 +23,31 @@ const ButtonStyled = styled(Button)({
   fontSize: "1.25rem",
   fontWeight: 600,
 });
+
+export function ButtonComponent({ background, children, path, type = "button" }: ButtonComponentProps) {
+
+  const navigate = useNavigate();
+
+  function handleGoTo() {
+    if (path) {
+      navigate(path);
+    }
+    return;
+  }
+
+  return (
+    <ButtonStyled
+      type={type}
+      onClick={type !== "submit" ? handleGoTo : () => { }}
+      sx={{
+        background: background,
+        "&:hover": {
+          background: background,
+          filter: "brightness(0.85)",
+          boxShadow: 'none',
+        }
+      }}>
+      {children}
+    </ButtonStyled>
+  );
+}

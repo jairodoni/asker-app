@@ -1,18 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { api } from '../services/api';
+import { Ask } from '../types/asks';
 
-interface Ask {
-  category: string,
-  type: string,
-  difficulty: string,
-  question: string,
-  correct_answer: string,
-  incorrect_answers: [
-    "Jumpman",
-    "Mr. Video",
-    "Mario"
-  ]
-}
 
 interface AsksContextData {
   asks: Ask[];
@@ -27,11 +16,20 @@ interface AsksProviderProps {
 export const AsksContext = createContext({} as AsksContextData);
 
 export function AsksProvider({ children }: AsksProviderProps) {
-  const [asks, setAsks] = useState<Ask[]>([]);
+  const [asks, setAsks] = useState<Ask[]>(() => {
+    const askList = localStorage.getItem('@askerapp:asks')
+    if (askList) {
+      return JSON.parse(askList);
+    }
+
+    return [];
+  });
 
   async function getAsks(amount: number) {
     const { data } = await api.get(`?amount=${amount}`);
+    localStorage.setItem('@askerapp:asks', data.results)
     setAsks(data.results);
+    return;
   };
 
   return (
