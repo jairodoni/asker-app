@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 interface InputProps {
   placeholder: string;
   type: string;
-  name: string
+  name: string;
 }
 
 export function InputComponent({ placeholder, type, name }: InputProps) {
@@ -18,4 +18,3 @@ export function InputComponent({ placeholder, type, name }: InputProps) {
     />
   );
 }
-

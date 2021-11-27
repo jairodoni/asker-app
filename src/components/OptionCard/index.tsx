@@ -1,21 +1,60 @@
-import { Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { Box } from '@material-ui/system';
+import { Field } from 'formik';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import styles from './styles.module.css';
 
-export function OptionCard() {
+interface OptionCardProps {
+  id: string;
+  submition: boolean;
+  correctAnswer: string;
+  selectedAlternative: string;
+  setSelectedAlternative: (value: string) => void;
+  content: string;
+}
+export function OptionCard({
+  content,
+  id,
+  correctAnswer,
+  selectedAlternative,
+  submition,
+  setSelectedAlternative,
+}: OptionCardProps) {
+  const [status, setStatus] = useState<string | undefined>(undefined);
+  const { askId } = useParams();
+
+  useEffect(() => {
+    if (submition) {
+      if (content === correctAnswer) {
+        setStatus(styles.correct);
+      }
+      if (
+        selectedAlternative !== correctAnswer && selectedAlternative === content) {
+        setStatus(styles.wrong);
+      }
+    } else {
+      setStatus(undefined);
+    }
+  }, [selectedAlternative, submition, askId]);
+
   return (
-    <Box>
-      <Box className={styles.container}>
-        <Typography
-          sx={{
-            fontSize: "0.95rem",
-            fontWeight: 400,
-          }}
-        >
-          Brasil, Estados Unidos, México e Índia
-        </Typography>
-      </Box>
-    </Box>
+    <a
+      href="#"
+      className={`${styles.container} ${status !== undefined ? status : ''}`}
+    >
+      <label className={styles.alternative}>
+        <Field
+          id={id}
+          name="alternative"
+          type="radio"
+          value={content}
+          onClick={() => setSelectedAlternative(content)}
+          style={{ display: 'none' }}
+        />
+        {content}
+      </label>
+    </a>
   );
 }

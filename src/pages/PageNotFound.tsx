@@ -1,6 +1,6 @@
-import { Stack } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { Card } from "../components/Card";
+import { Stack } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { Card } from '../components/Card';
 
 export function PageNotFound() {
   return (
@@ -8,7 +8,7 @@ export function PageNotFound() {
       <Stack
         p={4}
         sx={{
-          alignItems: "center"
+          alignItems: 'center',
         }}
       >
         <h1>ERROR</h1>
@@ -18,12 +18,12 @@ export function PageNotFound() {
         <Link to="/">
           <a
             style={{
-              width: "100%",
-              background: "#f1f1f1",
-              color: "#333",
-              padding: "5px 18px",
-              borderRadius: "10px",
-              fontWeight: "500"
+              width: '100%',
+              background: '#f1f1f1',
+              color: '#333',
+              padding: '5px 18px',
+              borderRadius: '10px',
+              fontWeight: '500',
             }}
           >
             Back to home

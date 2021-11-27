@@ -14,20 +14,17 @@ export function Answer() {
         spacing={2}
         p={4}
         sx={{
-          width: "100%",
-          maxHeight: "350px",
-          overflowY: "scroll",
+          width: '100%',
+          maxHeight: '350px',
+          overflowY: 'scroll',
         }}
       >
+        {/* <OptionCard />
         <OptionCard />
         <OptionCard />
-        <OptionCard />
-        <OptionCard />
+        <OptionCard /> */}
       </Stack>
-      <Box
-        paddingX={4}
-        paddingBottom={2}
-      >
+      <Box paddingX={4} paddingBottom={2}>
         <ButtonComponent background="#E79800" path="/record">
           Back
         </ButtonComponent>

@@ -8,19 +8,15 @@ interface CardProps {
 
 export function Card({ children }: CardProps) {
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      p="10px"
-    >
+    <Box display="flex" justifyContent="center" p="10px">
       <Paper
         elevation={3}
         sx={{
-          maxWidth: "380px",
-          width: "100%",
-          borderRadius: "24px",
+          maxWidth: '380px',
+          width: '100%',
+          borderRadius: '24px',
           marginBottom: 2,
-          boxShadow: "0 6px 16px rgba(0,0,0,0.7)"
+          boxShadow: '0 6px 16px rgba(0,0,0,0.7)',
         }}
       >
         {children}
