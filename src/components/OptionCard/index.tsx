@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Field } from 'formik';
+import { motion } from "framer-motion";
+
 import styles from './styles.module.css';
 
 interface OptionCardProps {
@@ -11,6 +13,13 @@ interface OptionCardProps {
   setSelectedAlternative: (value: string) => void;
   content: string;
 }
+const item = {
+  hidden: { x: 16, opacity: 0 },
+  open: {
+    x: 0,
+    opacity: 1
+  }
+};
 
 export function OptionCard({
   content,
@@ -38,9 +47,12 @@ export function OptionCard({
   }, [selectedAlternative, submition, askId]);
 
   return (
-    <a
+    <motion.a
+      variants={item}
+      initial="hidden"
+      animate="open"
+      className={`${styles.container} ${status !== undefined ? status : ''} item`}
       href="#"
-      className={`${styles.container} ${status !== undefined ? status : ''}`}
     >
       <label className={styles.alternative}>
         <Field
@@ -53,6 +65,6 @@ export function OptionCard({
         />
         {content}
       </label>
-    </a>
+    </motion.a>
   );
 }

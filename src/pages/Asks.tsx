@@ -8,9 +8,27 @@ import { Card } from '../components/Card';
 import { OptionCard } from '../components/OptionCard';
 import { useAsks } from '../Hooks/useAsks';
 import { Ask } from '../types/asks';
+import { motion } from "framer-motion";
 interface Alternative {
   alternative: string;
 }
+
+const container = {
+  hidden: { opacity: 0, scale: 1 },
+  visible: {
+    opacity: 1,
+    x: 0,
+
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+      ease: "easeIn"
+    }
+  },
+  closed: { opacity: 0, x: "100%" },
+};
+
+
 
 export function Asks() {
   const { asks, setRecord } = useAsks();
@@ -21,6 +39,7 @@ export function Asks() {
   const [correctAnswersUser, setCorrectAnswersUser] = useState(0);
   const [wrongAnswersUser, setWrongAnswersUser] = useState(0);
   const [orderAlternative, setOrderAlternative] = useState<Array<string>>([]);
+  const [activeFade, setActiveFade] = useState(true);
 
 
   const navigate = useNavigate();
@@ -41,7 +60,14 @@ export function Asks() {
     setCorrectAnswersUser(corrects);
     setWrongAnswersUser(wrongs);
 
-    const rercordQuestions = [...recordQuestions, { ...currentAsk, answer_user: selectedAlternative }];
+    const rercordQuestions = [
+      ...recordQuestions,
+      {
+        ...currentAsk,
+        answer_user: selectedAlternative
+      }
+    ];
+
     setRecordQuestions(rercordQuestions)
 
     const formatRecordAnswers = {
@@ -50,13 +76,16 @@ export function Asks() {
       recordQuestions: rercordQuestions,
     };
 
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 3000));
+    setActiveFade(false);
+    await new Promise((r) => setTimeout(r, 500));
     setSubmitExecuted(false);
 
     const questionId = Number(currentAsk.id) + 1;
 
     if (questionId < asks.length) {
       setCurrentAsk(asks[questionId]);
+      setActiveFade(true);
       return;
     }
 
@@ -77,14 +106,25 @@ export function Asks() {
   }
 
   useEffect(() => {
+    if (asks.length === 0) {
+      navigate('/');
+    }
     if (currentAsk) {
-      shuffleArray()
+      shuffleArray();
     }
   }, [currentAsk]);
 
+  const component123 = (
+    <div>
+      <h1>Testando Transição</h1>
+    </div>
+  )
 
   return (
-    asks && currentAsk ? (
+    <motion.div
+      variants={container}
+      animate={activeFade ? 'visible' : 'hidden'}
+    >
       <Card>
         <Formik
           onSubmit={handleSubmit}
@@ -123,6 +163,7 @@ export function Asks() {
               <Typography width="100%">{currentAsk.question}</Typography>
               {orderAlternative.map((alternative) => {
                 return (
+
                   <OptionCard
                     key={alternative}
                     id={alternative}
@@ -134,6 +175,7 @@ export function Asks() {
                   />
                 );
               })}
+
 
               <br />
 
@@ -154,16 +196,7 @@ export function Asks() {
             </Stack>
           </Form>
         </Formik>
-
       </Card>
-    ) : (
-      <Card>
-        <Stack p={4}>
-          <ButtonComponent background="#E79800" path="/">
-            Voltar para home
-          </ButtonComponent>
-        </Stack>
-      </Card>
-    )
+    </motion.div>
   );
 }
