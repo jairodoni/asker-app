@@ -1,41 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Field } from 'formik';
 import styles from './styles.module.css';
 
 interface OptionCardProps {
   id: string;
-  submition: boolean;
   correctAnswer: string;
-  selectedAlternative: string;
-  setSelectedAlternative: (value: string) => void;
+  answerUser: string | undefined;
   content: string;
 }
 
-export function OptionCard({
-  content,
+export function AnswerCard({
   id,
+  content,
   correctAnswer,
-  selectedAlternative,
-  submition,
-  setSelectedAlternative,
+  answerUser,
 }: OptionCardProps) {
   const [status, setStatus] = useState<string | undefined>(undefined);
   const { askId } = useParams();
 
   useEffect(() => {
-    if (submition) {
-      if (content === correctAnswer) {
-        setStatus(styles.correct);
-      }
-      if (
-        selectedAlternative !== correctAnswer && selectedAlternative === content) {
-        setStatus(styles.wrong);
-      }
-    } else {
-      setStatus(undefined);
+
+    if (content === correctAnswer) {
+      setStatus(styles.correct);
     }
-  }, [selectedAlternative, submition, askId]);
+    if (
+      answerUser !== correctAnswer && answerUser === content) {
+      setStatus(styles.wrong);
+    }
+
+  }, [askId]);
 
   return (
     <a
@@ -43,12 +36,11 @@ export function OptionCard({
       className={`${styles.container} ${status !== undefined ? status : ''}`}
     >
       <label className={styles.alternative}>
-        <Field
+        <input
           id={id}
           name="alternative"
           type="radio"
           value={content}
-          onClick={() => setSelectedAlternative(content)}
           style={{ display: 'none' }}
         />
         {content}

@@ -2,13 +2,16 @@ import { useNavigate } from 'react-router';
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/system';
 import { FiCheck } from 'react-icons/fi';
+import { IoClose } from 'react-icons/io5';
 import styles from './styles.module.css';
 
 interface QuestionWithAnswerProps {
+  indice: number;
+  statusAnswer: boolean;
   path: string;
 }
 
-export function QuestionWithAnswer({ path }: QuestionWithAnswerProps) {
+export function QuestionWithAnswer({ path, indice, statusAnswer }: QuestionWithAnswerProps) {
   const navigate = useNavigate();
 
   function handleGoTo() {
@@ -23,9 +26,12 @@ export function QuestionWithAnswer({ path }: QuestionWithAnswerProps) {
           fontWeight: 400,
         }}
       >
-        Question 01
+        Question {indice}
       </Typography>
-      <FiCheck size={24} color="#45d003" />
+      {statusAnswer
+        ? <FiCheck size={24} color="#45d003" />
+        : <IoClose size={28} color="#cc0000" />
+      }
     </Box>
   );
 }
