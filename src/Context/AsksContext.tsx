@@ -1,12 +1,13 @@
 import { createContext, ReactNode, useState } from 'react';
 import { api } from '../services/api';
-import { Ask } from '../types/asks';
+import { Ask, Record } from '../types/asks';
 
 interface AsksContextData {
   asks: Ask[];
   setAsks: (asks: Ask[]) => void;
   getAsks: (amount: number) => Promise<void>;
-  record: Object[];
+  record: Record;
+  setRecord: (record: Record) => void;
 }
 
 interface AsksProviderProps {
@@ -17,7 +18,7 @@ export const AsksContext = createContext({} as AsksContextData);
 
 export function AsksProvider({ children }: AsksProviderProps): JSX.Element {
   const [asks, setAsks] = useState<Ask[]>([]);
-  const [record, setRecord] = useState(() => {
+  const [record, setRecord] = useState<Record>(() => {
     const storagedRecord = localStorage.getItem('@askerapp:record');
 
     if (storagedRecord) {
@@ -42,14 +43,20 @@ export function AsksProvider({ children }: AsksProviderProps): JSX.Element {
       };
     });
 
-    localStorage.setItem('@askerapp:asks', askListFormated);
     setAsks(askListFormated);
     return;
   }
 
 
   return (
-    <AsksContext.Provider value={{ asks, setAsks, getAsks, record }}>
+    <AsksContext.Provider
+      value={{
+        asks,
+        setAsks,
+        getAsks,
+        record,
+        setRecord
+      }}>
       {children}
     </AsksContext.Provider>
   );

@@ -13,9 +13,9 @@ export default function RoutesList() {
       <Route path="/">
         <Route index element={<Home />} />
         <Route path="/start" element={<Start />} />
-        <Route path="/asks/:askId" element={<Asks />} />
+        <Route path="/asks" element={<Asks />} />
         <Route path="/record" element={<RecordSession />} >
-          <Route path="/:askId" element={<Answer />} />
+          <Route path=":askId" element={<Answer />} />
         </Route>
         <Route path="/answer" element={<Answer />} />
       </Route>

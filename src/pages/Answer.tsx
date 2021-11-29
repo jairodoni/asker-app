@@ -19,10 +19,10 @@ export function Answer() {
           overflowY: 'scroll',
         }}
       >
-        {/* <OptionCard />
         <OptionCard />
         <OptionCard />
-        <OptionCard /> */}
+        <OptionCard />
+        <OptionCard />
       </Stack>
       <Box paddingX={4} paddingBottom={2}>
         <ButtonComponent background="#E79800" path="/record">

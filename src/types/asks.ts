@@ -9,3 +9,9 @@ export interface Ask {
   answers: Array<string>;
   answer_user?: string;
 }
+
+export interface Record {
+  corrects: number;
+  wrongs: number;
+  recordQuestions: Ask[];
+}

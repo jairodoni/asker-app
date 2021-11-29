@@ -1,8 +1,8 @@
-import { Stack, Typography } from '@material-ui/core';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { CircularProgress, Stack, Typography } from '@material-ui/core';
 import { Box } from '@material-ui/system';
 import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { Card } from '../components/Card';
 import { OptionCard } from '../components/OptionCard';
@@ -12,10 +12,9 @@ interface Alternative {
   alternative: string;
 }
 
-export function Asks(): JSX.Element {
-  const { asks } = useAsks();
-  const { askId } = useParams();
-  const [currentAsk, setCurrentAsk] = useState<Ask>({} as Ask);
+export function Asks() {
+  const { asks, setRecord } = useAsks();
+  const [currentAsk, setCurrentAsk] = useState<Ask>({ ...asks[0] });
   const [recordQuestions, setRecordQuestions] = useState<Ask[]>([]);
   const [selectedAlternative, setSelectedAlternative] = useState('');
   const [submitExecuted, setSubmitExecuted] = useState(false);
@@ -23,71 +22,69 @@ export function Asks(): JSX.Element {
   const [wrongAnswersUser, setWrongAnswersUser] = useState(0);
   const [orderAlternative, setOrderAlternative] = useState<Array<string>>([]);
 
+
   const navigate = useNavigate();
 
   async function handleSubmit(data: Alternative) {
+    if (submitExecuted) {
+      return;
+    }
     if (data.alternative.trim() === '') {
       return;
     }
 
     setSubmitExecuted(true);
 
-    if (data.alternative === currentAsk.correct_answer) {
-      setCorrectAnswersUser(correctAnswersUser + 1);
-    } else {
-      setWrongAnswersUser(wrongAnswersUser + 1);
-    }
+    const corrects = data.alternative === currentAsk.correct_answer ? correctAnswersUser + 1 : correctAnswersUser;
+    const wrongs = data.alternative !== currentAsk.correct_answer ? wrongAnswersUser + 1 : wrongAnswersUser;
 
-    setRecordQuestions([...recordQuestions, { ...currentAsk, answer_user: selectedAlternative }]);
+    setCorrectAnswersUser(corrects);
+    setWrongAnswersUser(wrongs);
+
+    const rercordQuestions = [...recordQuestions, { ...currentAsk, answer_user: selectedAlternative }];
+    setRecordQuestions(rercordQuestions)
 
     const formatRecordAnswers = {
-      corrects: correctAnswersUser,
-      wrongs: wrongAnswersUser,
-      recordQuestions,
+      corrects: corrects,
+      wrongs: wrongs,
+      recordQuestions: rercordQuestions,
     };
 
-    const pageParam = Number(askId);
-
-    if (pageParam === asks.length) {
-      await localStorage.setItem(
-        '@askerapp:record',
-        JSON.stringify(formatRecordAnswers)
-      );
-      await new Promise((r) => setTimeout(r, 2000));
-      setSubmitExecuted(false);
-      navigate(`/record`);
-    }
     await new Promise((r) => setTimeout(r, 2000));
     setSubmitExecuted(false);
-    navigate(`/asks/${pageParam + 1}`);
+
+    const questionId = Number(currentAsk.id) + 1;
+
+    if (questionId < asks.length) {
+      setCurrentAsk(asks[questionId]);
+      return;
+    }
+
+    setRecord(formatRecordAnswers);
+    await localStorage.setItem('@askerapp:record', JSON.stringify(formatRecordAnswers));
+    navigate('/record');
   }
 
   async function shuffleArray() {
-    let array = asks[Number(askId) - 1].answers;
+    let array = asks[Number(currentAsk.id)].answers;
 
-    for (let i = array?.length - 1; i > 0; i--) {
-
+    for (let i = array.length - 1; i > 0; i--) {
       const j = await Math.floor(Math.random() * (i + 1));
-
       [array[i], array[j]] = [array[j], array[i]];
     }
 
-    setOrderAlternative(array)
+    setOrderAlternative(array);
   }
 
   useEffect(() => {
-    if (asks) {
-      setCurrentAsk(asks[Number(askId) - 1]);
+    if (currentAsk) {
       shuffleArray()
-    } else if (asks == []) {
-      navigate('/');
     }
-  }, [navigate]);
+  }, [currentAsk]);
 
 
   return (
     asks && currentAsk ? (
-
       <Card>
         <Formik
           onSubmit={handleSubmit}
@@ -106,9 +103,10 @@ export function Asks(): JSX.Element {
               }}
             >
               <Typography>
-                Question {Number(askId)} out of {asks.length}
+                Question {Number(currentAsk.id) + 1} out of {asks.length}
               </Typography>
             </Box>
+
             <Stack
               direction="column"
               alignItems="center"
@@ -121,6 +119,7 @@ export function Asks(): JSX.Element {
               }}
               id="my-radio-group"
             >
+
               <Typography width="100%">{currentAsk.question}</Typography>
               {orderAlternative.map((alternative) => {
                 return (
@@ -135,14 +134,23 @@ export function Asks(): JSX.Element {
                   />
                 );
               })}
+
               <br />
-              <ButtonComponent
-                background="#E79800"
-                path="/record"
-                type="submit"
-              >
-                Confirm
-              </ButtonComponent>
+
+              {!submitExecuted ? (
+                <ButtonComponent
+                  background="#E79800"
+                  type="submit"
+                >
+                  Confirm
+                </ButtonComponent>
+              ) : (
+                <ButtonComponent background="#E79800" >
+                  <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
+                    <CircularProgress color="inherit" size={20} />
+                  </div>
+                </ButtonComponent>
+              )}
             </Stack>
           </Form>
         </Formik>

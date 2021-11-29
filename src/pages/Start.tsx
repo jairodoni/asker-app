@@ -1,6 +1,4 @@
 import { Stack } from '@material-ui/core';
-import { useEffect } from 'react';
-import { useParams } from 'react-router';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { Card } from '../components/Card';
 
@@ -15,7 +13,7 @@ export function Start() {
         alignItems="baseline"
         spacing={2}
       >
-        <ButtonComponent background="#45D003" path="/asks/1">
+        <ButtonComponent background="#45D003" path="/asks">
           Start
         </ButtonComponent>
         <ButtonComponent background="#CC0000" path="/">

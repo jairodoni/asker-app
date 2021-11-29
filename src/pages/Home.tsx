@@ -17,14 +17,13 @@ export function Home() {
 
   const navigate = useNavigate();
 
-  function handleSubmit(data: any) {
+  async function handleSubmit(data: any) {
     getAsks(data.amount);
     navigate('/start');
   }
 
   useEffect(() => {
     setAsks([]);
-    localStorage.removeItem('@askerapp:asks');
   }, []);
 
   return (
