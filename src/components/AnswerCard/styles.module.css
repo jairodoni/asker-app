@@ -3,13 +3,8 @@
   border-radius: 8px;
 }
 .container:hover {
-  filter: brightness(0.75);
+  filter: none;
 }
-
-.container:focus {
-  border: 1px solid #f1f1f1;
-}
-
 .alternative {
   height: min-content;
   width: 100%;
@@ -25,11 +20,6 @@
 
   font-size: 0.95rem;
   font-weight: 400;
-
-  /* border: 2px solid; */
-
-  /* border-image: linear-gradient(227.91deg, #106af2 0%, #00e0ff 100%) 1; */
-  transition: filter 0.2s;
 }
 
 .correct {
