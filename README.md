@@ -71,10 +71,10 @@ Você pode visualizar o layout do projeto no formato através [desse link](https
     <img  style="border-radius: 0.5rem;" alt="telasWeb" src=".github/screen02.png" width="100%">
     <br/>
     <br/>
-    <img style="border-radius: 0.5rem;" alt="telasWeb" src=".github/screen04.png" width="100%">
-    <br/>
-    <br/>
     <img style="border-radius: 0.5rem;" alt="telasWeb" src=".github/screen03.png" width="100%">
+    <br/>
+    <br/>
+    <img style="border-radius: 0.5rem;" alt="telasWeb" src=".github/screen04.png" width="100%">
     <br/>
     <br/>
     <img style="border-radius: 0.5rem;" alt="telasWeb" src=".github/screen05.png" width="100%">
