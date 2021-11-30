@@ -25,8 +25,8 @@ export function OptionCard({
   content,
   id,
   correctAnswer,
-  selectedAlternative,
   submition,
+  selectedAlternative,
   setSelectedAlternative,
 }: OptionCardProps) {
   const [status, setStatus] = useState<string | undefined>(undefined);
