@@ -46,7 +46,7 @@ export function Questions() {
     if (submitExecuted) {
       return;
     }
-    if (data.alternative.trim() === '') {
+    if (data.alternative === '' && selectedAlternative === '') {
       return;
     }
 
@@ -83,6 +83,7 @@ export function Questions() {
 
     if (questionId < questions.length) {
       setCurrentQuestion(questions[questionId]);
+      setSelectedAlternative('')
       setActiveFade(true);
       return;
     }
@@ -148,9 +149,9 @@ export function Questions() {
               }}
             >
 
-              <Typography width="100%">
-                {currentQuestion.question}
-              </Typography>
+              <Box
+                dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
+              />
 
               {orderAlternative.map((alternative) => {
                 return (

@@ -26,10 +26,9 @@ export function Answer() {
           overflowY: 'scroll',
         }}
       >
-        <Typography width="100%">
-          {question.question}
-        </Typography>
-
+        <Box
+          dangerouslySetInnerHTML={{ __html: question.question }}
+        />
         {question.answers.map((alternative) => {
           return (
             <AnswerCard

@@ -37,7 +37,7 @@ export function QuizProvider({ children }: QuizProviderProps) {
         category: question.category,
         type: question.type,
         difficulty: question.difficulty,
-        question: question.question.replace(/&quot;/g, '"'),
+        question: question.question,
         correct_answer: question.correct_answer,
         answers: [...question.incorrect_answers, question.correct_answer],
       };

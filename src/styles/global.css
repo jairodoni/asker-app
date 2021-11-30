@@ -16,7 +16,7 @@
 }
 @media (max-width: 450px) {
   html {
-    font-size: 87.5%; /*14px*/
+    font-size: 81.25%; /*13px*/
   }
 }
 
@@ -64,13 +64,7 @@ input + span {
 }
 
 .logo {
-  -webkit-text-stroke: 4px #000;
-}
-
-@media (max-width: 720px) {
-  .logo {
-    -webkit-text-stroke: 3px #000;
-  }
+  -webkit-text-stroke: 3px #000;
 }
 
 @media (max-width: 480px) {
