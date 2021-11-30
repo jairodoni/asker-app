@@ -4,19 +4,21 @@ import { Header } from './components/Header';
 import './styles/global.css';
 import { ThemeProvider } from '@material-ui/core';
 import { theme } from './styles/theme';
-import { AsksProvider } from './Context/AsksContext';
+import { QuizProvider } from './Context/QuizContext';
 
 export default function App() {
   return (
-    <AsksProvider>
+    <QuizProvider>
       <ThemeProvider theme={theme}>
-        <div className="backgroudImg">
-          <Header />
-          <Router>
-            <RoutesList />
-          </Router>
+        <div className="backgroudImg" >
+          <div>
+            <Header />
+            <Router>
+              <RoutesList />
+            </Router>
+          </div>
         </div>
       </ThemeProvider>
-    </AsksProvider>
+    </QuizProvider >
   );
 }

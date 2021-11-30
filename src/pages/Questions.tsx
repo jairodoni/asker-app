@@ -6,9 +6,10 @@ import { Form, Formik } from 'formik';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { Card } from '../components/Card';
 import { OptionCard } from '../components/OptionCard';
-import { useAsks } from '../Hooks/useAsks';
-import { Ask } from '../types/asks';
+import { useQuiz } from '../Hooks/useQuiz';
+import { Question } from '../types/questions';
 import { motion } from "framer-motion";
+
 interface Alternative {
   alternative: string;
 }
@@ -28,19 +29,16 @@ const container = {
   closed: { opacity: 0, x: "100%" },
 };
 
-
-
-export function Asks() {
-  const { asks, setRecord } = useAsks();
-  const [currentAsk, setCurrentAsk] = useState<Ask>({ ...asks[0] });
-  const [recordQuestions, setRecordQuestions] = useState<Ask[]>([]);
-  const [selectedAlternative, setSelectedAlternative] = useState('');
-  const [submitExecuted, setSubmitExecuted] = useState(false);
-  const [correctAnswersUser, setCorrectAnswersUser] = useState(0);
-  const [wrongAnswersUser, setWrongAnswersUser] = useState(0);
+export function Questions() {
+  const { questions, setHistoric } = useQuiz();
+  const [currentQuestion, setCurrentQuestion] = useState<Question>({ ...questions[0] });
+  const [historicQuestions, setHistoricQuestions] = useState<Question[]>([]);
+  const [selectedAlternative, setSelectedAlternative] = useState<string>('');
+  const [submitExecuted, setSubmitExecuted] = useState<boolean>(false);
+  const [correctAnswersUser, setCorrectAnswersUser] = useState<number>(0);
+  const [wrongAnswersUser, setWrongAnswersUser] = useState<number>(0);
   const [orderAlternative, setOrderAlternative] = useState<Array<string>>([]);
-  const [activeFade, setActiveFade] = useState(true);
-
+  const [activeFade, setActiveFade] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -54,48 +52,48 @@ export function Asks() {
 
     setSubmitExecuted(true);
 
-    const corrects = data.alternative === currentAsk.correct_answer ? correctAnswersUser + 1 : correctAnswersUser;
-    const wrongs = data.alternative !== currentAsk.correct_answer ? wrongAnswersUser + 1 : wrongAnswersUser;
+    const corrects = data.alternative === currentQuestion.correct_answer ? correctAnswersUser + 1 : correctAnswersUser;
+    const wrongs = data.alternative !== currentQuestion.correct_answer ? wrongAnswersUser + 1 : wrongAnswersUser;
 
     setCorrectAnswersUser(corrects);
     setWrongAnswersUser(wrongs);
 
     const rercordQuestions = [
-      ...recordQuestions,
+      ...historicQuestions,
       {
-        ...currentAsk,
+        ...currentQuestion,
         answer_user: selectedAlternative
       }
     ];
 
-    setRecordQuestions(rercordQuestions)
+    setHistoricQuestions(rercordQuestions)
 
-    const formatRecordAnswers = {
+    const formatHistoricAnswers = {
       corrects: corrects,
       wrongs: wrongs,
-      recordQuestions: rercordQuestions,
+      historicQuestions: rercordQuestions,
     };
 
     await new Promise((r) => setTimeout(r, 3000));
     setActiveFade(false);
-    await new Promise((r) => setTimeout(r, 500));
     setSubmitExecuted(false);
+    await new Promise((r) => setTimeout(r, 500));
 
-    const questionId = Number(currentAsk.id) + 1;
+    const questionId = Number(currentQuestion.id) + 1;
 
-    if (questionId < asks.length) {
-      setCurrentAsk(asks[questionId]);
+    if (questionId < questions.length) {
+      setCurrentQuestion(questions[questionId]);
       setActiveFade(true);
       return;
     }
 
-    setRecord(formatRecordAnswers);
-    await localStorage.setItem('@askerapp:record', JSON.stringify(formatRecordAnswers));
-    navigate('/record');
+    setHistoric(formatHistoricAnswers);
+    await localStorage.setItem('@quizapp:historic', JSON.stringify(formatHistoricAnswers));
+    navigate('/historic');
   }
 
   async function shuffleArray() {
-    let array = asks[Number(currentAsk.id)].answers;
+    let array = questions[Number(currentQuestion.id)].answers;
 
     for (let i = array.length - 1; i > 0; i--) {
       const j = await Math.floor(Math.random() * (i + 1));
@@ -106,19 +104,13 @@ export function Asks() {
   }
 
   useEffect(() => {
-    if (asks.length === 0) {
+    if (questions.length === 0) {
       navigate('/');
     }
-    if (currentAsk) {
+    if (currentQuestion) {
       shuffleArray();
     }
-  }, [currentAsk]);
-
-  const component123 = (
-    <div>
-      <h1>Testando Transição</h1>
-    </div>
-  )
+  }, [currentQuestion]);
 
   return (
     <motion.div
@@ -134,16 +126,13 @@ export function Asks() {
         >
           <Form>
             <Box
-              sx={{
-                marginTop: '-20px',
-                position: 'relative',
-                padding: 2,
-                borderRadius: '24px 24px 0 0',
-                background: '#000',
-              }}
+              marginTop='-20px'
+              borderRadius='24px 24px 0 0'
+              padding={2}
+              sx={{ background: '#000' }}
             >
               <Typography>
-                Question {Number(currentAsk.id) + 1} out of {asks.length}
+                Question {Number(currentQuestion.id) + 1} out of {questions.length}
               </Typography>
             </Box>
 
@@ -157,10 +146,12 @@ export function Asks() {
                 marginTop: '-20px',
                 wordWrap: 'break-word',
               }}
-              id="my-radio-group"
             >
 
-              <Typography width="100%">{currentAsk.question}</Typography>
+              <Typography width="100%">
+                {currentQuestion.question}
+              </Typography>
+
               {orderAlternative.map((alternative) => {
                 return (
 
@@ -168,14 +159,13 @@ export function Asks() {
                     key={alternative}
                     id={alternative}
                     submition={submitExecuted}
-                    correctAnswer={currentAsk.correct_answer}
+                    correctAnswer={currentQuestion.correct_answer}
                     content={alternative}
                     selectedAlternative={selectedAlternative}
                     setSelectedAlternative={setSelectedAlternative}
                   />
                 );
               })}
-
 
               <br />
 

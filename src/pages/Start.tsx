@@ -13,7 +13,7 @@ export function Start() {
         alignItems="baseline"
         spacing={2}
       >
-        <ButtonComponent background="#45D003" path="/asks">
+        <ButtonComponent background="#45D003" path="/questions">
           Start
         </ButtonComponent>
         <ButtonComponent background="#CC0000" path="/">

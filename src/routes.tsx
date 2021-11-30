@@ -2,9 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { Start } from './pages/Start';
-import { Asks } from './pages/Asks';
+import { Questions } from './pages/Questions';
 import { PageNotFound } from './pages/PageNotFound';
-import { RecordSession } from './pages/RecordSession';
+import { HistoricSession } from './pages/HistoricSession';
 import { Answer } from './pages/Answer';
 
 export default function RoutesList() {
@@ -13,10 +13,10 @@ export default function RoutesList() {
       <Route path="/">
         <Route index element={<Home />} />
         <Route path="/start" element={<Start />} />
-        <Route path="/asks" element={<Asks />} />
-        <Route path="/record" >
-          <Route index element={<RecordSession />} />
-          <Route path="question/:askId" element={<Answer />} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/historic" >
+          <Route index element={<HistoricSession />} />
+          <Route path="question/:questionId" element={<Answer />} />
         </Route>
         <Route path="/answer" element={<Answer />} />
       </Route>

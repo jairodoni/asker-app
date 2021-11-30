@@ -1,12 +1,12 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import * as yup from 'yup';
 import { Stack, Typography } from '@material-ui/core';
 import { ErrorMessage, Form, Formik } from 'formik';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { Card } from '../components/Card';
 import { InputComponent } from '../components/Input';
-import { useAsks } from '../Hooks/useAsks';
-import { useNavigate } from 'react-router';
-import { useEffect } from 'react';
+import { useQuiz } from '../Hooks/useQuiz';
 import { HistoricCard } from '../components/HistoricCard';
 
 const validationSchema = yup.object().shape({
@@ -14,17 +14,17 @@ const validationSchema = yup.object().shape({
 });
 
 export function Home() {
-  const { record, getAsks, setAsks } = useAsks();
+  const { historic, getQuestions, setQuestions } = useQuiz();
 
   const navigate = useNavigate();
 
   async function handleSubmit(data: any) {
-    getAsks(data.amount);
+    getQuestions(data.amount);
     navigate('/start');
   }
 
   useEffect(() => {
-    setAsks([]);
+    setQuestions([]);
   }, []);
 
   return (
@@ -52,7 +52,7 @@ export function Home() {
           </Formik>
         </Stack>
       </Card>
-      {!!record && (
+      {historic?.historicQuestions?.length > 0 && (
         <HistoricCard />
       )}
     </>

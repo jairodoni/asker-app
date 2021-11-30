@@ -4,13 +4,13 @@ import { ReactNode } from 'react';
 import { Card } from '../Card';
 import styles from './styles.module.css';
 
-interface RecordCardProps {
+interface HistoricCardProps {
   right: number;
   wrong: number;
   children: ReactNode;
 }
 
-export function RecordCard({ children, right, wrong }: RecordCardProps) {
+export function HistoricModelCard({ children, right, wrong }: HistoricCardProps) {
   return (
     <Card>
       <Box className={styles.score}>

@@ -18,6 +18,9 @@ export const theme = createTheme({
     fontWeightRegular: 400,
     h2: {
       '@media (max-width: 1080px)': {
+        fontSize: '4rem',
+      },
+      '@media (max-width: 720px)': {
         fontSize: '3.2rem',
       },
     },

@@ -1,17 +1,19 @@
-import { Stack } from '@material-ui/core';
+import { Stack, Typography } from '@material-ui/core';
 import { Box } from '@material-ui/system';
 import { useParams } from 'react-router';
 import { AnswerCard } from '../components/AnswerCard';
 import { ButtonComponent } from '../components/ButtonComponent';
-import { RecordCard } from '../components/RecordCard';
-import { useAsks } from '../Hooks/useAsks';
+import { HistoricModelCard } from '../components/HistoricModelCard';
+import { useQuiz } from '../Hooks/useQuiz';
 
 export function Answer() {
-  const { record } = useAsks();
-  const { askId } = useParams()
-  const question = record.recordQuestions[Number(askId) - 1]
+  const { historic } = useQuiz();
+  const { questionId } = useParams()
+
+  const question = historic.historicQuestions[Number(questionId) - 1]
+
   return (
-    <RecordCard right={record.corrects} wrong={record.wrongs}>
+    <HistoricModelCard right={historic.corrects} wrong={historic.wrongs}>
       <Stack
         direction="column"
         alignItems="center"
@@ -24,6 +26,10 @@ export function Answer() {
           overflowY: 'scroll',
         }}
       >
+        <Typography width="100%">
+          {question.question}
+        </Typography>
+
         {question.answers.map((alternative) => {
           return (
             <AnswerCard
@@ -37,10 +43,10 @@ export function Answer() {
         })}
       </Stack>
       <Box paddingX={4} paddingBottom={2}>
-        <ButtonComponent background="#E79800" path="/record">
+        <ButtonComponent background="#E79800" path="/historic">
           Back
         </ButtonComponent>
       </Box>
-    </RecordCard>
+    </HistoricModelCard>
   );
 }

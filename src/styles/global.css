@@ -34,7 +34,6 @@ textarea {
 body {
   background: #333;
   color: #f1f1f1;
-
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -64,11 +63,33 @@ input + span {
   cursor: not-allowed;
 }
 
+.logo {
+  -webkit-text-stroke: 4px #000;
+}
+
+@media (max-width: 720px) {
+  .logo {
+    -webkit-text-stroke: 3px #000;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    -webkit-text-stroke: 2px #000;
+  }
+}
+
 .backgroudImg {
   background: #333333 url('../assets/images/background.jpg') no-repeat center;
   background-size: cover;
   width: 100%;
   height: 100vh;
+}
+
+.backgroudImg > div {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
 }
 
 @media (max-width: 1400px) {
@@ -77,11 +98,11 @@ input + span {
   }
 }
 
-@media (max-width: 800px) {
+/* @media (max-width: 800px) {
   .backgroudImg {
-    height: 100vh;
+    height: 130vh;
   }
-}
+} */
 
 /* width scrollbar */
 /* ::-webkit-scrollbar {

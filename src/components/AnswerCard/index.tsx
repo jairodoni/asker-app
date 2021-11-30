@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import styles from './styles.module.css';
 
 interface OptionCardProps {
@@ -16,10 +15,8 @@ export function AnswerCard({
   answerUser,
 }: OptionCardProps) {
   const [status, setStatus] = useState<string | undefined>(undefined);
-  const { askId } = useParams();
 
   useEffect(() => {
-
     if (content === correctAnswer) {
       setStatus(styles.correct);
     }
@@ -27,8 +24,7 @@ export function AnswerCard({
       answerUser !== correctAnswer && answerUser === content) {
       setStatus(styles.wrong);
     }
-
-  }, [askId]);
+  }, []);
 
   return (
     <a

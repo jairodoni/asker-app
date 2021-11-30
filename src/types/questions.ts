@@ -1,4 +1,4 @@
-export interface Ask {
+export interface Question {
   id?: number;
   category: string;
   type: string;
@@ -10,8 +10,8 @@ export interface Ask {
   answer_user?: string;
 }
 
-export interface Record {
+export interface Historic {
   corrects: number;
   wrongs: number;
-  recordQuestions: Ask[];
+  historicQuestions: Question[];
 }

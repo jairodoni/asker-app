@@ -15,10 +15,11 @@ const ButtonStyled = styled(Button)({
   width: '100%',
   marginTop: '1.6rem',
   padding: '4px 12px',
+
   textTransform: 'none',
   borderRadius: 10,
-  boxShadow: 'none',
   color: '#fff',
+  boxShadow: 'none',
 
   fontSize: '1.25rem',
   fontWeight: 600,
@@ -42,7 +43,7 @@ export function ButtonComponent({
   return (
     <ButtonStyled
       type={type}
-      onClick={type !== 'submit' ? handleGoTo : () => {}}
+      onClick={type !== 'submit' ? handleGoTo : () => { }}
       sx={{
         background: background,
         '&:hover': {

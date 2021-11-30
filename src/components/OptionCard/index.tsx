@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
 import { Field } from 'formik';
 import { motion } from "framer-motion";
-
 import styles from './styles.module.css';
+
 
 interface OptionCardProps {
   id: string;
@@ -13,6 +12,7 @@ interface OptionCardProps {
   setSelectedAlternative: (value: string) => void;
   content: string;
 }
+
 const item = {
   hidden: { x: 16, opacity: 0 },
   open: {
@@ -30,7 +30,6 @@ export function OptionCard({
   setSelectedAlternative,
 }: OptionCardProps) {
   const [status, setStatus] = useState<string | undefined>(undefined);
-  const { askId } = useParams();
 
   useEffect(() => {
     if (submition) {
@@ -44,7 +43,7 @@ export function OptionCard({
     } else {
       setStatus(undefined);
     }
-  }, [selectedAlternative, submition, askId]);
+  }, [selectedAlternative, submition]);
 
   return (
     <motion.a

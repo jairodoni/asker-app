@@ -23,7 +23,11 @@ const container = {
 
 export function Card({ children }: CardProps) {
   return (
-    <Box display="flex" justifyContent="center" p="10px">
+    <Box
+      display="flex"
+      justifyContent="center"
+      p="10px"
+    >
       <motion.div
         variants={container}
         initial="hidden"
