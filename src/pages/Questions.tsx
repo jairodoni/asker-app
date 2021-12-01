@@ -58,7 +58,7 @@ export function Questions() {
     setCorrectAnswersUser(corrects);
     setWrongAnswersUser(wrongs);
 
-    const rercordQuestions = [
+    const recordQuestions = [
       ...historicQuestions,
       {
         ...currentQuestion,
@@ -66,12 +66,12 @@ export function Questions() {
       }
     ];
 
-    setHistoricQuestions(rercordQuestions)
+    setHistoricQuestions(recordQuestions)
 
     const formatHistoricAnswers = {
       corrects: corrects,
       wrongs: wrongs,
-      historicQuestions: rercordQuestions,
+      historicQuestions: recordQuestions,
     };
 
     await new Promise((r) => setTimeout(r, 3000));
