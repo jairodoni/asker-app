@@ -2,6 +2,8 @@ import { createContext, ReactNode, useState } from 'react';
 import { api } from '../services/api';
 import { Question, Historic } from '../types/questions';
 
+type QuestionResponse = Omit<Question, "id">;
+
 interface QuizContextData {
   questions: Question[];
   setQuestions: (question: Question[]) => void;
@@ -31,7 +33,7 @@ export function QuizProvider({ children }: QuizProviderProps) {
   async function getQuestions(amount: number) {
     const { data } = await api.get(`?amount=${amount}`);
 
-    const questionListFormated = data.results.map((question: Question, indice: number) => {
+    const questionListFormated = data.results.map((question: QuestionResponse, indice: number) => {
       return {
         id: indice,
         category: question.category,

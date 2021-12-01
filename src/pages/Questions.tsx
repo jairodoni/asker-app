@@ -7,8 +7,8 @@ import { ButtonComponent } from '../components/ButtonComponent';
 import { Card } from '../components/Card';
 import { OptionCard } from '../components/OptionCard';
 import { useQuiz } from '../Hooks/useQuiz';
-import { Question } from '../types/questions';
 import { motion } from "framer-motion";
+import { HistoricQuestions, Question } from '../types/questions';
 
 interface Alternative {
   alternative: string;
@@ -32,7 +32,7 @@ const container = {
 export function Questions() {
   const { questions, setHistoric } = useQuiz();
   const [currentQuestion, setCurrentQuestion] = useState<Question>({ ...questions[0] });
-  const [historicQuestions, setHistoricQuestions] = useState<Question[]>([]);
+  const [historicQuestions, setHistoricQuestions] = useState<HistoricQuestions[]>([]);
   const [selectedAlternative, setSelectedAlternative] = useState<string>('');
   const [submitExecuted, setSubmitExecuted] = useState<boolean>(false);
   const [correctAnswersUser, setCorrectAnswersUser] = useState<number>(0);
