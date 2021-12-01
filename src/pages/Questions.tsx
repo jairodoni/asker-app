@@ -46,7 +46,7 @@ export function Questions() {
     if (submitExecuted) {
       return;
     }
-    if (data.alternative === '' && selectedAlternative === '') {
+    if (data.alternative === '' || selectedAlternative === '') {
       return;
     }
 
