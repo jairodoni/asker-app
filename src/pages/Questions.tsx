@@ -62,7 +62,7 @@ export function Questions() {
       ...historicQuestions,
       {
         ...currentQuestion,
-        answer_user: selectedAlternative
+        answer_user: data.alternative
       }
     ];
 
