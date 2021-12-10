@@ -94,6 +94,7 @@ Você pode visualizar o layout do projeto no formato através [desse link](https
 - **[React][react]**
 - **[Material UI][material_ui]**
 - **[Formik][formik]**
+- **[Axios][axios]**
 - **[Yup][yup]**
 - **[React Icons][react_icons]**
 
@@ -181,6 +182,7 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para
 [formik]: https://formik.org
 [react_icons]: https://react-icons.github.io/react-icons/
 [yup]: https://github.com/jquense/yup
+[axios]: https://github.com/axios/axios
 [asdf]: https://github.com/asdf-vm/asdf
 [yarn]: https://classic.yarnpkg.com/en/docs/install/#debian-stable
 [stackedit]: https://stackedit.io
